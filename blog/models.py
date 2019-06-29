@@ -8,6 +8,7 @@ STATUS = (
     (1, 'Publish')
 )
 
+
 class Post(models.Model):
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
@@ -16,10 +17,10 @@ class Post(models.Model):
     content = models.TextField()
     created_on = models.DateTimeField(auto_now_add=True)
     status = models.IntegerField(choices=STATUS, default=0)
+    photo = models.ImageField(upload_to="gallery")
 
     class Meta:
         ordering = ['-created_on']
 
     def __str__(self):
         return self.title
-
